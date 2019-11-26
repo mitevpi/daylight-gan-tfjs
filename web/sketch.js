@@ -1,26 +1,34 @@
 const SIZE = 256;
-let inputImg, inputCanvas, outputContainer, statusMsg, pix2pix, clearBtn, transferBtn, modelReady = false, isTransfering = false;
+let inputImg,
+  inputCanvas,
+  outputContainer,
+  statusMsg,
+  pix2pix,
+  clearBtn,
+  transferBtn,
+  modelReady = false,
+  isTransfering = false;
 
 function setup() {
   // Create a canvas
   inputCanvas = createCanvas(SIZE, SIZE);
-  inputCanvas.class('border-box').parent('canvasContainer');
+  inputCanvas.class("border-box").parent("canvasContainer");
 
   // Display initial input image
-  inputImg = loadImage('./images/inputDaylight.png', drawImage);
+  inputImg = loadImage("./images/inputDaylight.png", drawImage);
 
   // Selcect output div container
-  outputContainer = select('#output');
-  statusMsg = select('#status');
+  outputContainer = select("#output");
+  statusMsg = select("#status");
 
   // Select 'transfer' button html element
-  transferBtn = select('#transferBtn');
+  transferBtn = select("#transferBtn");
 
   // Select 'clear' button html element
-  clearBtn = select('#clearBtn');
+  clearBtn = select("#clearBtn");
   draw();
   // Attach a mousePressed event to the 'clear' button
-  clearBtn.mousePressed(function () {
+  clearBtn.mousePressed(function() {
     clearCanvas();
   });
 
@@ -29,7 +37,7 @@ function setup() {
   pixelDensity(1);
 
   // Create a pix2pix method with a pre-trained model
-  pix2pix = ml5.pix2pix('models/daylightToPlan.pict', modelLoaded);
+  pix2pix = ml5.pix2pix("models/daylightToPlan.pict", modelLoaded);
 }
 
 // Draw on the canvas when mouse is pressed
@@ -42,14 +50,14 @@ function draw() {
 // Whenever mouse is released, transfer the current image if the model is loaded and it's not in the process of another transformation
 function mouseReleased() {
   if (modelReady && !isTransfering) {
-    transfer()
+    transfer();
   }
 }
 
 // A function to be called when the models have loaded
 function modelLoaded() {
   // Show 'Model Loaded!' message
-  statusMsg.html('Model Loaded!');
+  statusMsg.html("Model Loaded!");
 
   // Set modelReady to true
   modelReady = true;
@@ -58,7 +66,7 @@ function modelLoaded() {
   transfer();
 
   // Attach a mousePressed event to the transfer button
-  transferBtn.mousePressed(function () {
+  transferBtn.mousePressed(function() {
     transfer();
   });
 }
@@ -74,20 +82,18 @@ function clearCanvas() {
   draw();
 }
 
-
-
 function transfer() {
   // Set isTransfering to true
   isTransfering = true;
 
   // Update status message
-  statusMsg.html('Applying Style Transfer...!');
+  statusMsg.html("Applying Style Transfer...!");
 
   // Select canvas DOM element
-  const canvasElement = select('canvas').elt;
+  const canvasElement = select("canvas").elt;
 
   // Apply pix2pix transformation
-  pix2pix.transfer(canvasElement, function (err, result) {
+  pix2pix.transfer(canvasElement, function(err, result) {
     if (err) {
       console.log(err);
     }
@@ -95,11 +101,13 @@ function transfer() {
       // Set isTransfering back to false
       isTransfering = false;
       // Clear output container
-      outputContainer.html('');
+      outputContainer.html("");
       // Create an image based result
-      createImg(result.src).class('border-box').parent('output');
+      createImg(result.src)
+        .class("border-box")
+        .parent("output");
       // Show 'Done!' message
-      statusMsg.html('Done!');
+      statusMsg.html("Done!");
     }
   });
 }
