@@ -1,17 +1,3 @@
-// Copyright (c) 2019 ml5
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
-
-/* ===
-ml5 Example
-Pix2pix Edges2Pikachu example with p5.js using callback functions
-This uses a pre-trained model on Pikachu images
-For more models see: https://github.com/ml5js/ml5-data-and-training/tree/master/models/pix2pix
-=== */
-
-// The pre-trained Edges2Pikachu model is trained on 256x256 images
-// So the input images can only be 256x256 or 512x512, or multiple of 256
 const SIZE = 256;
 let inputImg, inputCanvas, outputContainer, statusMsg, pix2pix, clearBtn, transferBtn, modelReady = false, isTransfering = false;
 
@@ -21,7 +7,7 @@ function setup() {
   inputCanvas.class('border-box').parent('canvasContainer');
 
   // Display initial input image
-  inputImg = loadImage('./images/input.png', drawImage);
+  inputImg = loadImage('./images/inputDaylight.png', drawImage);
 
   // Selcect output div container
   outputContainer = select('#output');
