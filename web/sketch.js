@@ -15,41 +15,10 @@ For more models see: https://github.com/ml5js/ml5-data-and-training/tree/master/
 const SIZE = 256;
 let inputImg, inputCanvas, outputContainer, statusMsg, pix2pix, clearBtn, transferBtn, modelReady = false, isTransfering = false;
 
-
-
-function draw() {
-  var canvas = document.getElementById('viewport'),
-    context = canvas.getContext('2d');
-  make_base();
-
-  function make_base() {
-    base_image = new Image();
-    base_image.src = 'floorPlan.png';
-    base_image.onload = function () {
-      context.drawImage(base_image, 0, 0);
-    }
-    console.log("DRAWING")
-  }
-} // end draw
-
 function setup() {
   // Create a canvas
   inputCanvas = createCanvas(SIZE, SIZE);
   inputCanvas.class('border-box').parent('canvasContainer');
-
-  var canvas = document.getElementById('defaultCanvas0'),
-    context = canvas.getContext('2d');
-  make_base();
-
-  function make_base() {
-    base_image = new Image();
-    base_image.src = './floorPlan.png';
-    base_image.onload = function () {
-      context.drawImage(base_image, 0, 0);
-      console.log(base_image, context)
-    }
-    console.log("DRAWING")
-  }
 
   // Display initial input image
   inputImg = loadImage('./images/input.png', drawImage);
@@ -74,7 +43,7 @@ function setup() {
   pixelDensity(1);
 
   // Create a pix2pix method with a pre-trained model
-  pix2pix = ml5.pix2pix('models/edges2pikachu.pict', modelLoaded);
+  pix2pix = ml5.pix2pix('models/daylightToPlan.pict', modelLoaded);
 }
 
 // Draw on the canvas when mouse is pressed
