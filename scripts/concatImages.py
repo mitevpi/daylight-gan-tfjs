@@ -1,8 +1,8 @@
 import cv2
 import os
 # import numpy as np
-inputDir = r'/Users/mitevpi/Google Drive/Work/010_Project Files/191120_DaylightGAN/Data/daylight-train/input'
-outputDir = "/Users/mitevpi/Google Drive/Work/010_Project Files/191120_DaylightGAN/Data/daylight-train/merged-flip"
+inputDir = r'/Users/mitevpi/Desktop/train/input'
+outputDir = "/Users/mitevpi/Desktop/train/merged"
 
 counter = 0
 directory = inputDir

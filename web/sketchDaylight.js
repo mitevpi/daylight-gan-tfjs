@@ -15,7 +15,7 @@ function setup() {
   inputCanvas.class("border-box").parent("canvasContainer");
 
   // Display initial input image
-  inputImg = loadImage("./images/inputPlan3.png", drawImage);
+  inputImg = loadImage("./images/inputPlan4.png", drawImage);
 
   // Selcect output div container
   outputContainer = select("#output");
@@ -37,7 +37,7 @@ function setup() {
   pixelDensity(1);
 
   // Create a pix2pix method with a pre-trained model
-  pix2pix = ml5.pix2pix("models/plantoDaylight.pict", modelLoaded);
+  pix2pix = ml5.pix2pix("models/planToDaylight.pict", modelLoaded);
 }
 
 // Draw on the canvas when mouse is pressed
